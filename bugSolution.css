@@ -1,0 +1,45 @@
+To fix this, increase the specificity of the `.highlight:hover` selector. We can achieve this by adding a more specific parent element or using the `!important` flag (though using `!important` should be avoided unless absolutely necessary as it can lead to hard-to-debug conflicts):
+
+**Solution 1 (Preferred): Adding a more specific parent element**
+
+```css
+div {
+  background-color: lightblue;
+}
+
+div:hover {
+  background-color: lightcoral;
+}
+
+.highlight {
+  background-color: lightyellow;
+}
+
+.container .highlight:hover {
+  background-color: yellow;
+}
+```
+
+In this solution, we wrap the element with class 'highlight' in a `div` with class 'container', making the selector `.container .highlight:hover` more specific.
+
+**Solution 2 (Less Preferred): Using !important**
+
+```css
+div {
+  background-color: lightblue;
+}
+
+div:hover {
+  background-color: lightcoral;
+}
+
+.highlight {
+  background-color: lightyellow;
+}
+
+.highlight:hover {
+  background-color: yellow !important;
+}
+```
+
+Using `!important` forces the style to apply regardless of other selector specificities.  Avoid this approach unless absolutely necessary due to potential maintainability issues.
